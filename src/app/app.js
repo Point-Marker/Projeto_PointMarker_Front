@@ -1,16 +1,14 @@
-import react, {Component} from "react";
-import BancoDeHoras from "../componente/page/bancoHoras/BancoHoras";
-import Login from "../componente/page/login/Login";
-
+import react, { Component } from "react";
+import Routes from "../routes";
 
 class App extends Component {
-    render(){
-        return(
-            <div className="App">
-                <BancoDeHoras/>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="App">
+          <Routes></Routes>
+      </div>
+    );
+  }
 }
 
 export default App;
