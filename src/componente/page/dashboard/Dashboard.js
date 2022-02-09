@@ -29,16 +29,45 @@ class ListBancoDeHoras extends Component {
   }
 }
 
+class FormBancoDeHoras extends Component {
+  render() {
+      return(
+   <Form>
+       <FormGroup>
+           <div className="form-row">
+                <Label for="funcionarios">Funcionario</Label>
+                <Input id="funcionario" type="number" placeholder="Informe o Id do Funcionario"/>
+           </div>
+       </FormGroup>
+       <FormGroup>
+           <div className="form-row">
+                <Label for="funcionarios">Entrada</Label>
+                <Input id="funcionario" type="time" placeholder="Informe o Id do Funcionario"/>
+           </div>
+       </FormGroup>
+       <FormGroup>
+           <div className="form-row">
+                <Label for="funcionarios">Saida</Label>
+                <Input id="funcionario" type="time" placeholder="Informe o Id do Funcionario"/>
+           </div>
+       </FormGroup>
+       <Button color="primary" block>Atualizar</Button>
+   </Form>
+    );
+  }
+}
+
 class Dashboard extends Component {
   render() {
     return (
       <div>
         <div className="row">
           <div className="col-md-6 my-3">
-           
+              <h2 className="font-weight-bold text-center ">ATUALIZAR BANCO DE HORAS</h2>
+            <FormBancoDeHoras />
             </div>
             <div className="col-md-6 my-3">
-            <h2 className="font-weight-bold text-center ">LISTA DE BANCO DE HORAS</h2>
+              <h2 className="font-weight-bold text-center ">LISTA DE BANCO DE HORAS</h2>
                 <ListBancoDeHoras/>
             </div>
           </div>
