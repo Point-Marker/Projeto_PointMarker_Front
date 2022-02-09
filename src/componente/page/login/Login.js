@@ -33,6 +33,7 @@ export default class Login extends Component {
             throw new Error("Login inválido")
         }).then(token => {
             localStorage.setItem('token', token);
+            this.props.history.push("/dashboard");
         }).catch( e => {
             this.setState({message: e.message})
             console.log(this.email, this.password)
