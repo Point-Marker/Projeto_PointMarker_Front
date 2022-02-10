@@ -39,11 +39,11 @@ export default class BancoDeHoras extends Component {
   render() {
     return (
       <div>
-        <Header title="Banco de Horas" />
+        <Header title="Marcador de Ponto" />
         <hr />
         <Form>
           <FormGroup>
-            <Label for="name"> Nome do Funcionario: </Label>
+            <Label for="name"> Nome </Label>
             <Input
               type="text"
               id="name"
@@ -52,7 +52,7 @@ export default class BancoDeHoras extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="horario"> Entrada: </Label>
+            <Label for="horario"> Horário de entrada </Label>
             <Input
               type="time"
               id="entrada"
@@ -61,7 +61,7 @@ export default class BancoDeHoras extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="horario"> Saida: </Label>
+            <Label for="horario"> Horário de saída </Label>
             <Input
               type="time"
               id="saida"
@@ -70,7 +70,7 @@ export default class BancoDeHoras extends Component {
             />
           </FormGroup>
           <Button color="danger" block onClick={this.save}>
-            ENVIAR
+            Enviar
           </Button>
         </Form>
       </div>

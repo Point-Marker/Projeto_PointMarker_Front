@@ -74,6 +74,7 @@ export default class CadastroDeFuncionarios extends Component {
               type="text"
               id="cargo"
               onChange={(e) => (this.observation = e.target.value)}
+              placeholder="Informe o seu cargo"
             />
           </FormGroup>
           <FormGroup>
@@ -91,12 +92,12 @@ export default class CadastroDeFuncionarios extends Component {
               type="password"
               id="senha"
               onChange={(e) => (this.name = e.target.value)}
-              placeholder="Digite a sua Senha"
+              placeholder="Digite a sua senha"
             />
           </FormGroup>
           
           <Button color="danger" block onClick={this.save}>
-            ENVIAR
+            Enviar
           </Button>
         </Form>
       </div>
