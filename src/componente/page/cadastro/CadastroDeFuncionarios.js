@@ -11,28 +11,32 @@ export default class CadastroDeFuncionarios extends Component {
   }
 
   save = () => {
-    const url = "http://localhost:8080/leads";
+    const url = "http://localhost:8080/dashboard/cadastro/funcionarios";
     let data = {
-      email: this.email,
-      nome: this.name,
-      descricao: this.observation,
+      nome: this.nome,
+      cpf: this.cpf,
+      dataDeNascimento: this.dataDeNascimento,
+      cargo: {
+        id: this.cargo,
+      },
+      usuario: {
+        nomeUsuario: this.nomeUsuario,
+        senha: this.senha,
+      },
     };
     const requestInfo = {
       method: "POST",
       body: JSON.stringify(data),
       headers: new Headers({
-        "Content-Type": "application/json",
+        "Content-type": "application/json",
       }),
     };
     fetch(url, requestInfo)
       .then((response) => {
-        console.log(this.email, this.name, this.observation);
+        this.props.history.push("/dashboard");
         return response;
       })
-      .catch((e) => {
-        this.setState({ message: e.message });
-        console.log(this.email, this.nome, this.observacoes);
-      });
+      .catch((e) => console.log(e));
   };
 
   render() {
@@ -45,8 +49,8 @@ export default class CadastroDeFuncionarios extends Component {
             <Label for="name"> Nome do Funcionario: </Label>
             <Input
               type="text"
-              id="name"
-              onChange={(e) => (this.name = e.target.value)}
+              id="nome"
+              onChange={(e) => (this.nome = e.target.value)}
               placeholder="Informe o seu nome"
             />
           </FormGroup>
@@ -55,34 +59,33 @@ export default class CadastroDeFuncionarios extends Component {
             <Input
               type="text"
               id="cpf"
-              onChange={(e) => (this.email = e.target.value)}
+              onChange={(e) => (this.cpf = e.target.value)}
               placeholder="Informe o seu horário de entrada"
             />
           </FormGroup>
           <FormGroup>
-            <Label for="horario"> Data De Nascimento: </Label>
+            <Label for="dataDeNascimento"> Data De Nascimento: </Label>
             <Input
               type="date"
               id="dataDeNascimento"
-              onChange={(e) => (this.observation = e.target.value)}
+              onChange={(e) => (this.dataDeNascimento = e.target.value)}
               placeholder="Informe o seu horário de saida"
             />
           </FormGroup>
           <FormGroup>
-            <Label for="horario"> Cargo: </Label>
+            <Label for="cargo"> Cargo: </Label>
             <Input
               type="text"
               id="cargo"
-              onChange={(e) => (this.observation = e.target.value)}
-              placeholder="Informe o seu cargo"
+              onChange={(e) => (this.cargo = e.target.value)}
             />
           </FormGroup>
           <FormGroup>
-            <Label for="name"> Nome de Usuario: </Label>
+            <Label for="nomeUsuario"> Nome de Usuario: </Label>
             <Input
               type="text"
-              id="name"
-              onChange={(e) => (this.name = e.target.value)}
+              id="nomeUsuario"
+              onChange={(e) => (this.nomeUsuario = e.target.value)}
               placeholder="Informe o seu nome de usuario"
             />
           </FormGroup>
@@ -91,11 +94,11 @@ export default class CadastroDeFuncionarios extends Component {
             <Input
               type="password"
               id="senha"
-              onChange={(e) => (this.name = e.target.value)}
-              placeholder="Digite a sua senha"
+              onChange={(e) => (this.senha = e.target.value)}
+              placeholder="Digite a sua Senha"
             />
           </FormGroup>
-          
+
           <Button color="danger" block onClick={this.save}>
             Enviar
           </Button>

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import PrivateRoute from './auth';
 import Dashboard from './componente/page/dashboard/Dashboard';
-import CadastroDeFuncionario from './componente/page/cadastro/CadastroDeFuncionarios';
+import CadastroDeFuncionarios from './componente/page/cadastro/CadastroDeFuncionarios';
 import Login from "./componente/page/login/Login";
 import BancoHoras from './componente/page/bancoHoras/BancoHoras';
 
