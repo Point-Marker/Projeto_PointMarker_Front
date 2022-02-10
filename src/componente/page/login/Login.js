@@ -1,6 +1,9 @@
 import react, { Component } from "react";
 import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 import Header from "../../header/Header";
+import "./Login.css";
+import "../../layout/Card.css";
+import Card from "../../layout/Card";
 
 export default class Login extends Component {
   constructor(props) {
@@ -43,8 +46,9 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="col-md-6">
-        <Header title="Página de login" />
+      <div>
+   
+        <Header title="Point Marker" />
         <hr />
         {this.state.message !== "" ? (
           <Alert color="danger" className="text-center">
@@ -55,12 +59,12 @@ export default class Login extends Component {
         )}
         <Form>
           <FormGroup>
-            <Label for="nomeUsuario"> Nome De Usuario</Label>
+            <Label for="nomeUsuario"> Login</Label>
             <Input
               type="text"
               id="nomeUsuario"
               onChange={(e) => (this.nomeUsuario = e.target.value)}
-              placeholder="Informe o seu email: "
+              placeholder="Email"
             />
           </FormGroup>
           <FormGroup>
@@ -69,15 +73,17 @@ export default class Login extends Component {
               type="password"
               id="senha"
               onChange={(e) => (this.senha = e.target.value)}
-              placeholder="Informe a sua senha: "
+              placeholder="Digite sua senha"
             />
           </FormGroup>
-          <Button color="primary" block onClick={this.signIn}>
+          <Button color="danger" block onClick={this.signIn}>
             {" "}
             Entrar{" "}
           </Button>
         </Form>
       </div>
+
+      
     );
   }
 }
