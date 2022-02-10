@@ -16,7 +16,7 @@ class ListBancoDeHoras extends Component {
     this.props.deleteBanco(id);
   };
 
-  onEdit = (bancoHoras,data) => {
+  onEdit = (bancoHoras, data) => {
     PubSub.publish("edit-bancoHoras", bancoHoras);
   };
 
@@ -24,7 +24,7 @@ class ListBancoDeHoras extends Component {
     const { bancoHoras } = this.props;
     return (
       <Table className="table-bordered text-center">
-        <thead className="thead-dark">
+        <thead className="thead-dark text-light ">
           <tr>
             <th>Funcionario</th>
             <th>Dia do Trabalho</th>
@@ -44,7 +44,7 @@ class ListBancoDeHoras extends Component {
                 <Button
                   color="info"
                   size="sm"
-                  onClick={(e) => this.onEdit(banco,banco.diaDoTrabalho)}
+                  onClick={(e) => this.onEdit(banco, banco.diaDoTrabalho)}
                 >
                   Editar
                 </Button>
@@ -72,7 +72,7 @@ class FormBancoDeHoras extends Component {
       },
       entrada: "",
       saida: "",
-      diaDoTrabalho: ""
+      diaDoTrabalho: "",
     },
   };
 
@@ -90,7 +90,10 @@ class FormBancoDeHoras extends Component {
 
   create = () => {
     this.setState({ modelBanco: { entrada: "", saida: "" } });
-    this.props.bancoHorasCreate(this.state.modelBanco, this.state.modelBanco.diaDoTrabalho);
+    this.props.bancoHorasCreate(
+      this.state.modelBanco,
+      this.state.modelBanco.diaDoTrabalho
+    );
   };
 
   render() {
@@ -129,7 +132,7 @@ class FormBancoDeHoras extends Component {
             />
           </div>
         </FormGroup>
-        <Button color="primary" block onClick={this.onEdit}>
+        <Button color="danger" block onClick={this.onEdit}>
           Atualizar
         </Button>
       </Form>
@@ -169,7 +172,7 @@ class Dashboard extends Component {
       saida: bancoHoras.saida,
       data: bancoHoras.diaDoTrabalho,
     };
-    
+
     const token = localStorage.getItem("token");
     const requestInfo = {
       method: "PUT",
@@ -182,7 +185,7 @@ class Dashboard extends Component {
     fetch(this.url, requestInfo)
       .then((response) => response.json())
       .then((newBancoDeHoras) => {
-        let { bancoHoras } = this.state; 
+        let { bancoHoras } = this.state;
         bancoHoras.push(newBancoDeHoras);
         this.setState({
           bancoHoras,
