@@ -100,7 +100,7 @@ export default class CadastroDeFuncionarios extends Component {
           </FormGroup>
 
           <Button color="danger" block onClick={this.save}>
-            ENVIAR
+            Enviar
           </Button>
         </Form>
       </div>
