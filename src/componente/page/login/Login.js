@@ -1,6 +1,8 @@
 import react, { Component } from "react";
-import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
+import { Link } from "react-router-dom";
+import { Form, FormGroup, Label, Input, Button, Alert, Card } from "reactstrap";
 import Header from "../../header/Header";
+import CadastroDeFuncionarios from "../cadastro/CadastroDeFuncionarios";
 import "./Login.css";
 
 export default class Login extends Component {
@@ -11,6 +13,10 @@ export default class Login extends Component {
     };
   }
 
+  forwardCadastro = () => {
+    this.props.history.push("/cadastro");
+  }
+  
   signIn = () => {
     const url = "http://localhost:8080/login";
     const data = {
@@ -80,13 +86,19 @@ export default class Login extends Component {
           <Button color="danger" block onClick={this.signIn}>
             {" "}
             Entrar{" "}
-          </Button>
+          </Button>          
         </Form>
+          <div className="Footer-Cadastro">
+            
+          </div>
 
-        <div className="Footer-Cadastro">
-
-        </div>
-        
+          <div className="Cadastrar">
+          <Button color="danger" block onClick={this.forwardCadastro}>
+            {" "}
+            Cadastrar{" "}
+          </Button>
+          </div>
+          
       </div>
 
       

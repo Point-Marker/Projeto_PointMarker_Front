@@ -27,7 +27,7 @@ export default class CadastroDeFuncionarios extends Component {
     };
     fetch(url, requestInfo)
       .then((response) => {
-        this.props.history.push("/dashboard");
+        this.props.history.push("/");
         return response;
       })
       .catch((e) => console.log(e));
