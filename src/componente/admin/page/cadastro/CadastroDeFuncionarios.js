@@ -3,7 +3,6 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import Header from "../../../header/Header";
 
 export default class CadastroDeFuncionarios extends Component {
-
   save = () => {
     const url = "http://localhost:8080/dashboard/cadastro/funcionarios";
     let data = {
@@ -27,6 +26,9 @@ export default class CadastroDeFuncionarios extends Component {
     };
     fetch(url, requestInfo)
       .then((response) => {
+        if (localStorage.getItem("token") == null) {
+          this.props.history.push("/");
+        }
         this.props.history.push("/dashboard");
         return response;
       })
@@ -60,18 +62,18 @@ export default class CadastroDeFuncionarios extends Component {
           <FormGroup>
             <Label for="dataDeNascimento"> Data De Nascimento: </Label>
             <Input
-              type="date"
+              type="text"
               id="dataDeNascimento"
               onChange={(e) => (this.dataDeNascimento = e.target.value)}
-              placeholder="Informe o seu horário de saida"
+              placeholder="dd/MM/aaaa"
             />
           </FormGroup>
           <FormGroup>
             <Label for="cargo"> Cargo: </Label>
             <Input
-               type="text"
-               id="cargo"
-               onChange={(e) => (this.cargo = e.target.value)}
+              type="text"
+              id="cargo"
+              onChange={(e) => (this.cargo = e.target.value)}
             />
           </FormGroup>
           <FormGroup>
@@ -92,7 +94,6 @@ export default class CadastroDeFuncionarios extends Component {
               placeholder="Digite a sua Senha"
             />
           </FormGroup>
-         
 
           <Button color="danger" block onClick={this.save}>
             Enviar

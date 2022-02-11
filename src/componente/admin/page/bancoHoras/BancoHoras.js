@@ -4,7 +4,6 @@ import Header from "../../../header/Header";
 
 export default class BancoDeHoras extends Component {
   constructor(props) {
-    
     super(props);
     this.state = {
       message: this.props.state ? this.props.state.message : "",
@@ -12,27 +11,30 @@ export default class BancoDeHoras extends Component {
   }
 
   save = () => {
-    const url = "http://localhost:8080/leads";
+    const url = "http://localhost:8080/bancohoras";
     let data = {
-      email: this.email,
-      nome: this.name,
-      descricao: this.observation,
+      funcionario:{
+        id: this.id,
+      },
+      entrada: this.entrada,
+      saida: this.saida,
     };
+    const token = localStorage.getItem("token");
     const requestInfo = {
       method: "POST",
       body: JSON.stringify(data),
       headers: new Headers({
         "Content-Type": "application/json",
+        Authorization: token,
       }),
     };
     fetch(url, requestInfo)
       .then((response) => {
-        console.log(this.email, this.name, this.observation);
+        this.props.history.push("/dashboard");
         return response;
       })
       .catch((e) => {
         this.setState({ message: e.message });
-        console.log(this.email, this.nome, this.observacoes);
       });
   };
 
@@ -43,12 +45,12 @@ export default class BancoDeHoras extends Component {
         <hr />
         <Form>
           <FormGroup>
-            <Label for="name"> Nome </Label>
+            <Label for="id"> ID Do Funcionario </Label>
             <Input
-              type="text"
-              id="name"
-              onChange={(e) => (this.name = e.target.value)}
-              placeholder="Informe o seu nome"
+              type="number"
+              id="id"
+              onChange={(e) => (this.id = e.target.value)}
+              placeholder="Informe o id do Funcionario"
             />
           </FormGroup>
           <FormGroup>
@@ -56,7 +58,7 @@ export default class BancoDeHoras extends Component {
             <Input
               type="time"
               id="entrada"
-              onChange={(e) => (this.email = e.target.value)}
+              onChange={(e) => (this.entrada = e.target.value)}
               placeholder="Informe o seu horário de entrada"
             />
           </FormGroup>
@@ -65,7 +67,7 @@ export default class BancoDeHoras extends Component {
             <Input
               type="time"
               id="saida"
-              onChange={(e) => (this.observation = e.target.value)}
+              onChange={(e) => (this.saida = e.target.value)}
               placeholder="Informe o seu horário de saida"
             />
           </FormGroup>
