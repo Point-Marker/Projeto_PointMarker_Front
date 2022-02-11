@@ -3,12 +3,6 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import Header from "../../header/Header";
 
 export default class CadastroDeFuncionarios extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      message: this.props.state ? this.props.state.message : "",
-    };
-  }
 
   save = () => {
     const url = "http://localhost:8080/dashboard/cadastro/funcionarios";
@@ -40,6 +34,7 @@ export default class CadastroDeFuncionarios extends Component {
   };
 
   render() {
+    const { cargos } = this.props;
     return (
       <div>
         <Header title="Cadastro de Funcionarios" />
@@ -73,14 +68,6 @@ export default class CadastroDeFuncionarios extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="cargo"> Cargo: </Label>
-            <Input
-              type="text"
-              id="cargo"
-              onChange={(e) => (this.cargo = e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup>
             <Label for="nomeUsuario"> Nome de Usuario: </Label>
             <Input
               type="text"
@@ -97,6 +84,22 @@ export default class CadastroDeFuncionarios extends Component {
               onChange={(e) => (this.senha = e.target.value)}
               placeholder="Digite a sua Senha"
             />
+          </FormGroup>
+          <FormGroup>
+            <Label for="cargo"> Cargo: </Label>
+            <hr/>
+            <select
+              type="text"
+              id="cargo"
+              onChange={(e) => (this.cargo = e.target.value)}
+            >
+              <option>Selecione Um Cargo:</option>
+              <option value="1">Estagio</option>
+              <option value="2">Desenvolvedor Back-End</option>
+              <option value="3">Desenvolvedor Front-End</option>
+
+
+            </select>
           </FormGroup>
 
           <Button color="danger" block onClick={this.save}>
