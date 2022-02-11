@@ -2,8 +2,6 @@ import react, { Component } from "react";
 import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 import Header from "../../header/Header";
 import "./Login.css";
-import "../../layout/Card.css";
-import Card from "../../layout/Card";
 
 export default class Login extends Component {
   constructor(props) {
@@ -46,7 +44,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Card">
    
         <Header title="Point Marker" />
         <hr />
@@ -57,14 +55,17 @@ export default class Login extends Component {
         ) : (
           ""
         )}
-        <Form>
+        <div className="Into-Card">
+        
+        </div>
+        <Form className="Card-Form">
           <FormGroup>
             <Label for="nomeUsuario"> Login</Label>
             <Input
               type="text"
               id="nomeUsuario"
               onChange={(e) => (this.nomeUsuario = e.target.value)}
-              placeholder="Email"
+              placeholder="Nome de Usuario"
             />
           </FormGroup>
           <FormGroup>
@@ -81,6 +82,11 @@ export default class Login extends Component {
             Entrar{" "}
           </Button>
         </Form>
+
+        <div className="Footer-Cadastro">
+
+        </div>
+        
       </div>
 
       
