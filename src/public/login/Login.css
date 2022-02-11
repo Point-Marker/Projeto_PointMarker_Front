@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.Card{
+    width: 300px;
+
+    
+}
+
+.Into-Card{
+    width: 300px;
+    height: 250px;
+    opacity: 0.5;
+    border: 1px solid hsl(210deg 29% 97%);
+    background-color: rgba(223, 223, 223, 0.856);
+    position: absolute;
+    border-radius: 5px;
+
+}
+
+.Card-Form{
+    position: relative;
+    padding: 10px;
+}
+
+.Footer-Cadastro{
+    margin-top: 10px;
+    height: 50px;
+    opacity: 0.5;
+    background-color: rgba(223, 223, 223, 0.856);
+    border: 1px solid hsl(210deg 29% 97%);
+}
+
