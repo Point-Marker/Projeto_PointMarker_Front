@@ -1,5 +1,6 @@
 import { Tab } from "bootstrap";
 import PubSub from "pubsub-js";
+import "../dashboard/estilo.css";
 import react, { Component } from "react";
 import {
   Table,
@@ -16,39 +17,40 @@ class ListBancoDeHoras extends Component {
     this.props.deleteBanco(id);
   };
 
-  onEdit = (bancoHoras, data) => {
+  onEdit = (bancoHoras) => {
     PubSub.publish("edit-bancoHoras", bancoHoras);
   };
 
   render() {
     const { bancoHoras } = this.props;
     return (
-      <Table className="table-bordered text-center">
-        <thead className="thead-dark text-light ">
+      <Table className="table-bordered border-dark text-center bg-danger" id="tabela">
+        <thead className="thead-dark text-light " >
           <tr>
             <th>Funcionario</th>
-            <th>Dia do Trabalho</th>
+            <th>Dia Trabalhado</th>
             <th>Entrada</th>
             <th>Saida</th>
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           {bancoHoras.map((banco) => (
-            <tr key={banco.id}>
+            <tr key={banco.id} className="thead-dark text-dark " id="linhas">
               <td>{banco.funcionario.nome}</td>
               <td>{banco.diaDoTrabalho}</td>
               <td>{banco.entrada}</td>
               <td>{banco.saida}</td>
-              <td>
-                <Button
-                  color="info"
+              <td className="botoes">
+                <Button id="botaoeditar"
+                  color="warning"
                   size="sm"
-                  onClick={(e) => this.onEdit(banco, banco.diaDoTrabalho)}
+                  onClick={(e) => this.onEdit(banco)}
                 >
                   Editar
                 </Button>
                 <Button
+                  id="botaodeletar"
                   color="danger"
                   size="sm"
                   onClick={(e) => this.delete(banco.id)}
@@ -70,9 +72,9 @@ class FormBancoDeHoras extends Component {
       funcionario: {
         cpf: "",
       },
+      diaDoTrabalho: "",
       entrada: "",
       saida: "",
-      diaDoTrabalho: "",
     },
   };
 
@@ -89,11 +91,17 @@ class FormBancoDeHoras extends Component {
   };
 
   create = () => {
-    this.setState({ modelBanco: { entrada: "", saida: "" } });
-    this.props.bancoHorasCreate(
-      this.state.modelBanco,
-      this.state.modelBanco.diaDoTrabalho
-    );
+    this.setState({
+      modelBanco: {
+        funcionario: {
+          cpf: "",
+        },
+        diaDoTrabalho: "",
+        entrada: "",
+        saida: "",
+      },
+    });
+    this.props.bancoHorasCreate(this.state.modelBanco);
   };
 
   render() {
@@ -107,6 +115,18 @@ class FormBancoDeHoras extends Component {
               type="text"
               value={this.state.modelBanco.funcionario.cpf}
               onChange={(e) => this.setValuesBanco(e, "funcionario")}
+            />
+          </div>
+        </FormGroup>
+        <FormGroup>
+          <div className="form-row">
+            <Label for="diaDoTrabalho">Dia Do Trabalho</Label>
+            <Input
+              id="diaDoTrabalho"
+              type="text"
+              placeholder="dd/MM/aaaa"
+              value={this.state.modelBanco.diaDoTrabalho}
+              onChange={(e) => this.setValuesBanco(e, "diaDoTrabalho")}
             />
           </div>
         </FormGroup>
@@ -132,7 +152,7 @@ class FormBancoDeHoras extends Component {
             />
           </div>
         </FormGroup>
-        <Button color="danger" block onClick={this.onEdit}>
+        <Button color="danger" block onClick={this.create}>
           Atualizar
         </Button>
       </Form>
@@ -166,17 +186,20 @@ class Dashboard extends Component {
       .catch((e) => console.log(e));
   }
 
-  onEdit = (bancoHoras) => {
-    let json = {
+  save = (bancoHoras) => {
+    let data = {
+      funcionario: {
+        cpf: bancoHoras.funcionario.cpf,
+      },
+      diaDoTrabalho: bancoHoras.diaDoTrabalho,
       entrada: bancoHoras.entrada,
       saida: bancoHoras.saida,
-      data: bancoHoras.diaDoTrabalho,
     };
 
     const token = localStorage.getItem("token");
     const requestInfo = {
       method: "PUT",
-      body: JSON.stringify(json),
+      body: JSON.stringify(data),
       headers: new Headers({
         "Content-type": "application/json",
         Authorization: token,
@@ -190,7 +213,7 @@ class Dashboard extends Component {
         this.setState({
           bancoHoras,
           message: {
-            text: "BancoDeHoras atualizado com sucesso. ",
+            text: "Banco De Horas atualizado com sucesso. ",
             alert: "success",
           },
         });
@@ -246,7 +269,7 @@ class Dashboard extends Component {
             <h2 className="font-weight-bold text-center ">
               ATUALIZAR BANCO DE HORAS
             </h2>
-            <FormBancoDeHoras bancoHorasCreate={this.onEdit} />
+            <FormBancoDeHoras bancoHorasCreate={this.save} />
           </div>
           <div className="col-md-6 my-3">
             <h2 className="font-weight-bold text-center ">
