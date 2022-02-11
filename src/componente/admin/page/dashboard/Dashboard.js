@@ -24,7 +24,7 @@ class ListBancoDeHoras extends Component {
   render() {
     const { bancoHoras } = this.props;
     return (
-      <Table className="table-bordered border-dark text-center bg-danger" id="tabela">
+      <Table className="table-bordered border-light text-center " id="tabela">
         <thead className="thead-dark text-light " >
           <tr>
             <th>Funcionario</th>

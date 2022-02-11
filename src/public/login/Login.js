@@ -1,6 +1,6 @@
 import react, { Component } from "react";
-import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 import Header from "../../componente/header/Header";
+import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 import "./Login.css";
 
 export default class Login extends Component {
@@ -10,6 +10,10 @@ export default class Login extends Component {
       message: this.props.state ? this.props.state.message : "",
     };
   }
+
+  forwardCadastro = () => {
+    this.props.history.push("/cadastro");
+  };
 
   signIn = () => {
     const url = "http://localhost:8080/login";
@@ -45,7 +49,6 @@ export default class Login extends Component {
   render() {
     return (
       <div className="Card">
-   
         <Header title="Point Marker" />
         <hr />
         {this.state.message !== "" ? (
@@ -55,9 +58,7 @@ export default class Login extends Component {
         ) : (
           ""
         )}
-        <div className="Into-Card">
-        
-        </div>
+        <div className="Into-Card"></div>
         <Form className="Card-Form">
           <FormGroup>
             <Label for="nomeUsuario"> Login</Label>
@@ -82,14 +83,15 @@ export default class Login extends Component {
             Entrar{" "}
           </Button>
         </Form>
+        <div className="Footer-Cadastro"></div>
 
-        <div className="Footer-Cadastro">
-
+        <div className="Cadastrar">
+          <Button color="danger" block onClick={this.forwardCadastro}>
+            {" "}
+            Cadastrar{" "}
+          </Button>
         </div>
-        
       </div>
-
-      
     );
   }
 }

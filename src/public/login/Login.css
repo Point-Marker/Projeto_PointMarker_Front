@@ -11,7 +11,7 @@
 
 .Into-Card{
     width: 300px;
-    height: 250px;
+    height: 245px;
     opacity: 0.5;
     border: 1px solid hsl(210deg 29% 97%);
     background-color: rgba(223, 223, 223, 0.856);
@@ -26,10 +26,21 @@
 }
 
 .Footer-Cadastro{
+    width: 300px;
+    height: 300px;
+    position: absolute;
     margin-top: 10px;
     height: 50px;
     opacity: 0.5;
     background-color: rgba(223, 223, 223, 0.856);
     border: 1px solid hsl(210deg 29% 97%);
+}
+
+.Cadastrar{
+    position: fixed;
+    border: 30px;
+    position: relative;
+    margin-top: 10px;
+    padding: 5px;
 }
 
