@@ -25,7 +25,7 @@ class ListBancoDeHoras extends Component {
     const { bancoHoras } = this.props;
     return (
       <Table className="table-bordered border-light text-center " id="tabela">
-        <thead className="thead-dark text-light " >
+        <thead className="thead-dark text-light ">
           <tr>
             <th>Funcionario</th>
             <th>Dia Trabalhado</th>
@@ -34,7 +34,7 @@ class ListBancoDeHoras extends Component {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody >
+        <tbody>
           {bancoHoras.map((banco) => (
             <tr key={banco.id} className="thead-dark text-dark " id="linhas">
               <td>{banco.funcionario.nome}</td>
@@ -42,7 +42,8 @@ class ListBancoDeHoras extends Component {
               <td>{banco.entrada}</td>
               <td>{banco.saida}</td>
               <td className="botoes">
-                <Button id="botaoeditar"
+                <Button
+                  id="botaoeditar"
                   color="warning"
                   size="sm"
                   onClick={(e) => this.onEdit(banco)}
@@ -188,6 +189,7 @@ class Dashboard extends Component {
 
   save = (bancoHoras) => {
     let data = {
+      id: bancoHoras.id,
       funcionario: {
         cpf: bancoHoras.funcionario.cpf,
       },
